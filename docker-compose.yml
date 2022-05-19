@@ -1,0 +1,17 @@
+version: "3"
+services:
+  template-docker:
+    container_name: template-docker
+    build:
+      context: ./application
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000" 
+    volumes:
+      - ./application:/home/node/app
+      - /home/node/app/node_modules
+    command: ["npm", "run", "dev"]
+networks:
+  default:
+    external:
+      name: eadstock-network
